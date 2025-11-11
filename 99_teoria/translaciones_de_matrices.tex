@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+
+\title{Traslaciones y Representación de Objetos mediante Matrices en Juegos 2D}
+\author{Curso de Desarrollo de Videojuegos 2D}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introducción}
+En juegos 2D, los objetos se representan mediante vectores de posición y se pueden manipular mediante operaciones básicas de álgebra lineal. En esta sección, describimos cómo se modelan los objetos como matrices de vectores y cómo se aplican traslaciones simples para el movimiento dentro del juego.
+
+\section*{Representación de un objeto}
+Un objeto 2D puede representarse mediante un vector de posición:
+$$
+[
+\mathbf{v} = \begin{bmatrix} x \ y \end{bmatrix},]
+$$
+donde $x$ e $y$ representan la coordenada del objeto en la pantalla.
+
+Si el objeto tiene múltiples puntos de interés (como vértices de un rectángulo), se puede representar como una matriz cuyos columnas son los vectores de cada punto:
+$$
+[
+\mathbf{O} = \begin{bmatrix} x_1 & x_2 & x_3 & x_4 \\ y_1 & y_2 & y_3 & y_4 \end{bmatrix}]
+$$
+para un objeto rectangular de 4 vértices.
+
+\section*{Traslaciones}
+La traslación es una operación que desplaza un objeto por un vector $(dx, dy)$. Para un vector de posición:
+$$
+[
+\mathbf{v}' = \mathbf{v} + \mathbf{t} = \begin{bmatrix} x \ y \end{bmatrix} + \begin{bmatrix} dx \ dy \end{bmatrix} = \begin{bmatrix} x + dx \ y + dy \end{bmatrix}.]
+$$
+
+Para un objeto con varios puntos representado por la matriz $\mathbf{O}$:
+$$
+[
+\mathbf{O}' = \mathbf{O} + \mathbf{T},]
+$$
+donde $\mathbf{T}$ es una matriz con el vector de traslación repetido en cada columna:
+$$
+[
+\mathbf{T} = \begin{bmatrix} dx & dx & dx & dx \\ dy & dy & dy & dy \end{bmatrix}.]
+$$
+
+\section*{Aplicaciones en el juego}
+En nuestro juego 2D de plataformas, las operaciones básicas aplicadas son:
+\begin{itemize}
+\item \textbf{Movimiento horizontal del jugador:} Desplazamiento en $x$ mediante $dx = \pm v$ según la dirección.
+\item \textbf{Salto y caída:} Desplazamiento en $y$ con $dy$ determinado por la velocidad vertical y gravedad.
+\item \textbf{Movimiento de enemigos o cámara:} Traslación de todos los objetos visibles en sentido contrario al movimiento del jugador para simular seguimiento de cámara.
+\end{itemize}
+
+\section*{Resumen}
+Cada objeto del juego puede conceptualizarse como un conjunto de vectores. Las traslaciones se implementan mediante suma de vectores o matrices de vectores, y constituyen la operación básica para mover personajes, enemigos, objetos y la cámara dentro del juego 2D.
+
+\end{document}
